@@ -20,8 +20,27 @@
 				$("#search-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
 			},
 			success: function(data) {
+				
+				var ul = "<ul id='ticker-list'>"
+				var li = null
+				var ulFinal = "</ul>\n"
+				
+				for(var i=0; i < data.bestMatches['length'] ;i++){
+					var liTemp = '<li onClick="selectTicker(' + "'" + data.bestMatches[i]['1. symbol'] + "')" + '"'
+														   	   + ">" + data.bestMatches[i]['1. symbol'] 
+														       + "</li>"
+					
+					if(li === null){
+						li = liTemp
+					}else{
+						li = li + liTemp
+					}
+				}
+				ul = ul + li + ulFinal
+				result = ul
+				
 				$("#suggesstion-box").show();
-				$("#suggesstion-box").html(data);
+				$("#suggesstion-box").html(result);
 				$("#search-box").css("background", "#FFF");
 			},
             error: function (error) {
@@ -31,7 +50,7 @@
 	}
 
 	//To select a country name
-	function selectCountry(val) {
+	function selectTicker(val) {
 		$("#search-box").val(val);
 		$("#suggesstion-box").hide();
 	}	
