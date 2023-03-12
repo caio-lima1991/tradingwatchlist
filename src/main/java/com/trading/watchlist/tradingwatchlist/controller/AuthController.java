@@ -90,8 +90,13 @@ public class AuthController {
     	
     	userWatchlistService.saveTicker(userWatchlistDTO);
     	if(!(userWatchlistDTO.getMensagem() == null)) {
-    		result.rejectValue("symbol", null, userWatchlistDTO.getMensagem());
+    		result.rejectValue("symbol", null, userWatchlistDTO.getMensagem().toString());
     	}
+    	
+		if (result.hasErrors()) {
+			model.addAttribute("userWatchlistSave", userWatchlistDTO);
+			return "/hello";
+		}
     	
     	return "redirect:/hello?success";
     }

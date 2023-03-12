@@ -99,7 +99,7 @@
 		<form method="post" role="form" th:action="@{/hello/save}" th:object="${userWatchlistSave}">
 			<input type="text" id="search-box" style="margin-left: 20px;" th:field="*{symbol}">
 				<button type="submit">Gravar</button>
-				<p th:errors="*{symbol}" class="text-danger" th:if="${#fields.hasErrors('symbol')}"></p>
+				<p style="margin-left: 20px;" th:errors="*{symbol}" class="text-danger" th:if="${#fields.hasErrors('symbol')}"></p>
 		</form>
 		<div id="suggesstion-box"></div>
 	</div>

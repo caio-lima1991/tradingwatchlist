@@ -104,6 +104,7 @@ public class UserWatchlistServiceImpl implements UserWatchlistService {
 		userWatchlist.setSymbol(userWatchlistDTO.getSymbol());
 		userWatchlist.setVolume(userWatchlistDTO.getVolume());
 		
+		userWatchlistRepository.deleteBySymbol(userWatchlistDTO.getSymbol(), userWatchlistDTO.getUsername());
 		userWatchlistRepository.save(userWatchlist);
 	}
 
@@ -118,16 +119,20 @@ public class UserWatchlistServiceImpl implements UserWatchlistService {
 		try{
 			JSONObject globalQuote = response.getJSONObject("Global Quote");
 
-			userWatchlistDTO.setSymbol(globalQuote.getString("01. symbol"));
-			userWatchlistDTO.setChange(globalQuote.getString("09. change"));
-			userWatchlistDTO.setChangePercent(globalQuote.getString("10. change percent"));
-			userWatchlistDTO.setHigh(globalQuote.getString("03. high"));
-			userWatchlistDTO.setLatesTradingDay(globalQuote.getString("07. latest trading day"));
-			userWatchlistDTO.setLow(globalQuote.getString("04. low"));
-			userWatchlistDTO.setOpen(globalQuote.getString("02. open"));
-			userWatchlistDTO.setPreviousClose(globalQuote.getString("08. previous close"));
-			userWatchlistDTO.setPrice(globalQuote.getString("05. price"));
-			userWatchlistDTO.setVolume(globalQuote.getString("06. volume"));
+			try{
+				userWatchlistDTO.setSymbol(globalQuote.getString("01. symbol"));
+				userWatchlistDTO.setChange(globalQuote.getString("09. change"));
+				userWatchlistDTO.setChangePercent(globalQuote.getString("10. change percent"));
+				userWatchlistDTO.setHigh(globalQuote.getString("03. high"));
+				userWatchlistDTO.setLatesTradingDay(globalQuote.getString("07. latest trading day"));
+				userWatchlistDTO.setLow(globalQuote.getString("04. low"));
+				userWatchlistDTO.setOpen(globalQuote.getString("02. open"));
+				userWatchlistDTO.setPreviousClose(globalQuote.getString("08. previous close"));
+				userWatchlistDTO.setPrice(globalQuote.getString("05. price"));
+				userWatchlistDTO.setVolume(globalQuote.getString("06. volume"));
+			} catch(JSONException e) {
+				userWatchlistDTO.setMensagem("Ativo não encontrado");
+			}
 		} catch(JSONException e) {
 			String note = response.get("Note").toString();
 			userWatchlistDTO.setMensagem(note);
