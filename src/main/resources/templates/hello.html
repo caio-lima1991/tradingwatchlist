@@ -30,7 +30,7 @@
 						var ulFinal = "</ul>\n"
 						
 						for(var i=0; i < data.bestMatches['length'] ;i++){
-							var liTemp = '<li  class="list-group-item" onClick="selectTicker(' + "'" + data.bestMatches[i]['1. symbol'] + "')" + '"'
+							var liTemp = '<li style="float: left; border-style: solid; border-color: black; border-width: thin;list-style-type: none;padding: 5px;" onClick="selectTicker(' + "'" + data.bestMatches[i]['1. symbol'] + "')" + '"'
 																   	   + ">" + data.bestMatches[i]['1. symbol'] 
 																       + "</li>"
 							
@@ -101,7 +101,7 @@
 				<button type="submit">Gravar</button>
 				<p style="margin-left: 20px;" th:errors="*{symbol}" class="text-danger" th:if="${#fields.hasErrors('symbol')}"></p>
 		</form>
-		<div id="suggesstion-box"></div>
+		<div id="suggesstion-box" style="margin-left: 15px;"></div>
 	</div>
 
 <br>
