@@ -1,9 +1,7 @@
 package com.trading.watchlist.tradingwatchlist.domain;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
@@ -19,9 +17,6 @@ public class User {
 	private Long id;
 	private String username;
 	private String email;
-	
-	@OneToMany(cascade = CascadeType.ALL,mappedBy = "username")
-	private Set<UserWatchlist> userWatchlist = new HashSet<>();
 	
 	@JsonIgnore
 	private String password;

@@ -6,8 +6,16 @@ import lombok.Data;
 public class UserWatchlistDTO {
 
 	private Long id;
-	private String ticker;
-	private Long amount;
-	private Long buyingPrice;
-	private UserDTO username;
+	private String symbol;
+	private String username;
+	private String price;
+	private String change;
+	private String open;
+	private String volume;
+	private String latesTradingDay;
+	private String previousClose;
+	private String changePercent;
+	private String high;
+	private String low;
+	private String mensagem;
 }
